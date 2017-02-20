@@ -19,6 +19,7 @@ var imagemin     = require("gulp-imagemin");
 var pngquant     = require('imagemin-pngquant');
 var compass      = require('gulp-compass');
 var bower        = require('gulp-bower');
+var pug          = require('gulp-pug');
 
 /**
 *
@@ -102,13 +103,29 @@ gulp.task('bower', function() {
 
 /**
 *
+* Pug / Jade
+*
+**/
+gulp.task('pug', function() {
+  return gulp.src('pug/*.pug')
+    .pipe(pug({
+      // Your options in here.
+      pretty: true
+    }))
+    .pipe(gulp.dest('./'))
+});
+
+
+/**
+*
 * Default task
 * - Runs sass, browser-sync, scripts and image tasks
 * - Watchs for file changes for images, scripts and sass/css
 *
 **/
-gulp.task('default', ['bower', 'sass', 'browser-sync', 'scripts', 'images'], function () {
+gulp.task('default', ['bower', 'pug', 'sass', 'browser-sync', 'scripts', 'images'], function () {
   gulp.watch('sass/**/*.scss', ['sass']);
   gulp.watch('js/**/*.js', ['scripts']);
   gulp.watch('images/*', ['images']);
+  gulp.watch('pug/**/*.pug', ['pug']);
 });
