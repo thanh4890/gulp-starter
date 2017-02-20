@@ -37,8 +37,8 @@ gulp.task('sass', function() {
     css: 'css',
     sass: 'sass'
   }))
-  .pipe(prefix('last 2 versions', '> 1%', 'ie 8', 'Android 2', 'Firefox ESR'))
-  .pipe(plumber())
+  // .pipe(prefix('last 2 versions', '> 1%', 'ie 8', 'Android 2', 'Firefox ESR'))
+  // .pipe(plumber())
   .pipe(gulp.dest('css'));
 });
 
